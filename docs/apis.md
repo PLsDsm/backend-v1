@@ -27,3 +27,5 @@
 		- created-at
 		- id
  
+## db
+- sql 확인 필요
