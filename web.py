@@ -1,3 +1,4 @@
+import sys
 from fastapi import FastAPI
 
 from routers.lost import router as lost_router
@@ -9,7 +10,11 @@ app = FastAPI(
 )
 
 app.include_router(lost_router)
-db.init_db()
+
+try:
+    db.init_db()
+except Exception as e:
+    print(f"[ERROR] DB init failed: {e}", flush=True)
 
 @app.get("/health")
 def health():
