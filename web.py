@@ -9,7 +9,10 @@ import db.db as db
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    db.init_db()
+    try:
+        db.init_db()
+    except Exception as e:
+        print(f"[ERROR] DB init failed: {e}")
     yield
 
 
